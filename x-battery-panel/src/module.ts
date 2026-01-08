@@ -1,40 +1,51 @@
 import { PanelPlugin } from '@grafana/data';
-import { SimpleOptions } from './types';
 import { SimplePanel } from './components/SimplePanel';
+import { SimpleOptions } from './types';
 
 export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOptions((builder) => {
   return builder
+    // Battery 
     .addTextInput({
-      path: 'text',
-      name: 'Simple text option',
-      description: 'Description of panel option',
-      defaultValue: 'Default value of text input option',
+      path: 'label',
+      name: 'Battery label',
+      description: 'Title shown above the battery',
+      defaultValue: 'Battery',
     })
+
+    // Min
+    .addNumberInput({
+      path: 'min',
+      name: 'Minimum value',
+      defaultValue: 0,
+    })
+
+    // Max value
+    .addNumberInput({
+      path: 'max',
+      name: 'Maximum value',
+      defaultValue: 100,
+    })
+
+    // Low battery threshold
+    .addNumberInput({
+      path: 'lowThreshold',
+      name: 'Low battery (%)',
+      description: 'Below this value battery turns red',
+      defaultValue: 30,
+    })
+
+    // Medium battery threshold
+    .addNumberInput({
+      path: 'mediumThreshold',
+      name: 'Medium battery (%)',
+      description: 'Below this value battery turns orange',
+      defaultValue: 60,
+    })
+
+    // Show percentage text
     .addBooleanSwitch({
-      path: 'showSeriesCount',
-      name: 'Show series counter',
-      defaultValue: false,
-    })
-    .addRadio({
-      path: 'seriesCountSize',
-      defaultValue: 'sm',
-      name: 'Series counter size',
-      settings: {
-        options: [
-          {
-            value: 'sm',
-            label: 'Small',
-          },
-          {
-            value: 'md',
-            label: 'Medium',
-          },
-          {
-            value: 'lg',
-            label: 'Large',
-          },
-        ],
-      },
-      showIf: (config) => config.showSeriesCount,
+      path: 'showPercentage',
+      name: 'Show percentage text',
+      defaultValue: true,
     });
 });
