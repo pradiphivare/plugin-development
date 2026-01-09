@@ -1,8 +1,8 @@
 import { PanelPlugin } from '@grafana/data';
-import { SimplePanel } from './components/SimplePanel';
-import { SimpleOptions } from './types';
+import { BatteryPanel } from './components/BatteryPanel';
+import { BatteryPanel as BatteryPanelOptions } from './types';
 
-export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOptions((builder) => {
+export const plugin = new PanelPlugin<BatteryPanelOptions>(BatteryPanel).setPanelOptions((builder) => {
   return builder
     // Battery 
     .addTextInput({
@@ -18,6 +18,7 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
       name: 'Minimum value',
       defaultValue: 0,
     })
+    
 
     // Max value
     .addNumberInput({

@@ -1,10 +1,10 @@
 import React from 'react';
 import { PanelProps } from '@grafana/data';
-import { SimpleOptions } from '../types';
+import { BatteryPanel as BatteryPanelOptions } from '../types';
 
-interface Props extends PanelProps<SimpleOptions> {}
+interface Props extends PanelProps<BatteryPanelOptions> {}
 
-export const SimplePanel: React.FC<Props> = ({ data }) => {
+export const BatteryPanel: React.FC<Props> = ({ data }) => {
   if (data.series.length === 0) {
     return <div style={{ padding: 20 }}>No data</div>;
   }
